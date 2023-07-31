@@ -5,9 +5,7 @@ import { useEffect } from 'react';
 function App() {
   const [products, setProducts] = useState([]);
   async function getData() {
-    const { data } = await axios.get(
-      'https://mernecommercewebsite-backend.vercel.app/api/v1/products'
-    );
+    const { data } = await axios.get('/api/v1/products');
     if (data) {
       setProducts(data);
     }
