@@ -1,0 +1,61 @@
+import axios from "axios"
+import { ADMIN_LOAD_PROD_FAIL, ADMIN_LOAD_PROD_REQUEST, ADMIN_LOAD_PROD_SUCCESS, ADMIN_PROD_DEL_FAIL, ADMIN_PROD_DEL_REQUEST, ADMIN_PROD_DEL_SUCCESS, ADMIN_PROD_FAIL, ADMIN_PROD_REQUEST, ADMIN_PROD_SUCCESS } from "../constants/adminConstants"
+
+export const createprod=(name,price,desc,stock,category,rating,img)=>async(dispatch)=>{
+    dispatch({
+        type:ADMIN_PROD_REQUEST,
+    })
+    try {
+        const {data} = await axios.post('/api/v1/products',{
+            name,price,desc,stock,category,rating,img
+        })
+        dispatch({
+            type:ADMIN_PROD_SUCCESS,
+            payload:data.createdproduct
+        })
+    } catch (error) {
+        dispatch({
+            type:ADMIN_PROD_FAIL,
+            payload:error.response.data.message
+        })
+    }
+}
+
+
+export const loadadminProd=(id)=>async(dispatch)=>{
+    dispatch({
+        type:ADMIN_LOAD_PROD_REQUEST,
+    })
+    try {
+        const {data} = await axios.get(`/api/v1/adminproducts/${id}`)
+        dispatch({
+            type:ADMIN_LOAD_PROD_SUCCESS,
+            payload:data
+        })
+    } catch (error) {
+        dispatch({
+            type:ADMIN_LOAD_PROD_FAIL,
+            payload:error.response.data.message
+        })
+    }
+}
+
+
+export const deleteprod=(id)=>async(dispatch)=>{
+    dispatch({
+        type:ADMIN_PROD_DEL_REQUEST,
+    })
+    try {
+        const {data} = await axios.delete(`/api/v1/product/${id}`)
+        dispatch({
+            type:ADMIN_PROD_DEL_SUCCESS,
+            id:id,
+            payload:data.message
+        })
+    } catch (error) {
+        dispatch({
+            type:ADMIN_PROD_DEL_FAIL,
+            payload:error.response.data.message
+        })
+    }
+}

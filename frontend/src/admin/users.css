@@ -1,0 +1,49 @@
+.user-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.user {
+  width: 95%;
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  align-items: center;
+  justify-content: center;
+}
+.user-Info {
+  width: 90%;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px 1px;
+  background-color: antiquewhite;
+}
+.user-Info img {
+  height: 60px;
+  width: 60px;
+}
+
+.user-flex {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.black {
+  color: black;
+}
+
+@media only screen and (max-width: 600px) {
+  .user {
+    display: flex;
+    flex-direction: column;
+  }
+}
