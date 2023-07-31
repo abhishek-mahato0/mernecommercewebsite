@@ -9,7 +9,7 @@ export const createOrder =
   (shipping, cart, total, user) => async (dispatch) => {
     try {
       const { data } = await axios.post(
-        'https://mernecommercewebsite-backend.vercel.app/api/v1/order',
+        'https://mernecommercewebsite-backend.vercel.app/api/v1/order/my',
         {
           withCredentials: true, // Include cookies and other credentials with the request
         },
