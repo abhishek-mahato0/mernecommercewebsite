@@ -13,7 +13,10 @@ const IndUserOrder = () => {
   const Getallorders = async () => {
     try {
       const { data } = await axios.get(
-        `https://mernecommercewebsite-backend.vercel.app/api/v1/induser/orders/${id}`
+        `https://mernecommercewebsite-backend.vercel.app/api/v1/induser/orders/${id}`,
+        {
+          withCredentials: true, // Include cookies and other credentials with the request
+        }
       );
       if (data) {
         setOrders(data);

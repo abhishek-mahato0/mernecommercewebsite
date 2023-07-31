@@ -20,7 +20,10 @@ export const loadAllProduct = (filt) => async (dispatch) => {
     const { cat, val } = filt;
     if (cat && val) {
       const { data } = await axios.get(
-        `https://mernecommercewebsite-backend.vercel.app/api/v1/products?cat=${cat}&&val=${val}`
+        `https://mernecommercewebsite-backend.vercel.app/api/v1/products?cat=${cat}&&val=${val}`,
+        {
+          withCredentials: true, // Include cookies and other credentials with the request
+        }
       );
       if (data) {
         dispatch({
@@ -30,7 +33,10 @@ export const loadAllProduct = (filt) => async (dispatch) => {
       }
     } else if (cat && !val) {
       const { data } = await axios.get(
-        `https://mernecommercewebsite-backend.vercel.app/api/v1/products?cat=${cat}`
+        `https://mernecommercewebsite-backend.vercel.app/api/v1/products?cat=${cat}`,
+        {
+          withCredentials: true, // Include cookies and other credentials with the request
+        }
       );
       if (data) {
         dispatch({
@@ -41,7 +47,10 @@ export const loadAllProduct = (filt) => async (dispatch) => {
     } else if (val && !cat) {
       console.log(val);
       const { data } = await axios.get(
-        `https://mernecommercewebsite-backend.vercel.app/api/v1/products?val=${val}`
+        `https://mernecommercewebsite-backend.vercel.app/api/v1/products?val=${val}`,
+        {
+          withCredentials: true, // Include cookies and other credentials with the request
+        }
       );
       if (data) {
         dispatch({
@@ -51,7 +60,10 @@ export const loadAllProduct = (filt) => async (dispatch) => {
       }
     } else {
       const { data } = await axios.get(
-        'https://mernecommercewebsite-backend.vercel.app/api/v1/products'
+        'https://mernecommercewebsite-backend.vercel.app/api/v1/products',
+        {
+          withCredentials: true, // Include cookies and other credentials with the request
+        }
       );
       if (data) {
         dispatch({
@@ -74,7 +86,10 @@ export const loadsingleProduct = (id) => async (dispatch) => {
   });
   try {
     const { data } = await axios.get(
-      `https://mernecommercewebsite-backend.vercel.app/api/v1/product/${id}`
+      `https://mernecommercewebsite-backend.vercel.app/api/v1/product/${id}`,
+      {
+        withCredentials: true, // Include cookies and other credentials with the request
+      }
     );
 
     dispatch({
@@ -98,6 +113,9 @@ export const createReview =
       const { data } = await axios.put(
         `https://mernecommercewebsite-backend.vercel.app/api/v1/review/${id}`,
         {
+          withCredentials: true, // Include cookies and other credentials with the request
+        },
+        {
           rating: userrating,
           comment: usercomment,
         }
@@ -117,7 +135,10 @@ export const createReview =
 export const deleteReview = (id) => async (dispatch) => {
   try {
     const { data } = await axios.put(
-      `https://vercel.com/abhishek-mahato0/mernecommercewebsite-backend/api/v1/delreview/${id}`
+      `https://vercel.com/abhishek-mahato0/mernecommercewebsite-backend/api/v1/delreview/${id}`,
+      {
+        withCredentials: true, // Include cookies and other credentials with the request
+      }
     );
     dispatch({
       type: DELETE_REVIEW_SUCCESS,

@@ -20,6 +20,9 @@ const ChangePassword = () => {
             oldpassword: oldpassword,
             confirmpassword: confirmpassword,
             newpassword: newpassword,
+          },
+          {
+            withCredentials: true, // Include cookies and other credentials with the request
           }
         );
         if (data.message) {

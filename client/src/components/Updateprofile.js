@@ -19,6 +19,9 @@ const Updateprofile = () => {
           email: email,
           password: password,
           avatar: avatar,
+        },
+        {
+          withCredentials: true, // Include cookies and other credentials with the request
         }
       );
     };

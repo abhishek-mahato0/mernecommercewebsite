@@ -47,6 +47,9 @@ const Products = () => {
     form.append('myfile', prodimg);
     const { data } = await axios.post(
       'https://mernecommercewebsite-backend.vercel.app/api/v1/products',
+      {
+        withCredentials: true, // Include cookies and other credentials with the request
+      },
       form
     );
     if (data) {

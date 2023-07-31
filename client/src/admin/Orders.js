@@ -11,21 +11,29 @@ const Orders = () => {
 
   const getallorders = async () => {
     const { data } = await axios.get(
-      'https://mernecommercewebsite-backend.vercel.app/api/v1/orders'
+      'https://mernecommercewebsite-backend.vercel.app/api/v1/orders',
+      {
+        withCredentials: true, // Include cookies and other credentials with the request
+      }
     );
     setOrders(data);
   };
   async function deleteOrder(id) {
     const { data } = axios.delete(
-      `https://mernecommercewebsite-backend.vercel.app/api/v1/order/${id}`
+      `https://mernecommercewebsite-backend.vercel.app/api/v1/order/${id}`,
+      {
+        withCredentials: true, // Include cookies and other credentials with the request
+      }
     );
-    console.log(data);
 
     toast.success('Order deleted');
   }
   async function updateOrder(status, id) {
     const { data } = axios.put(
       `https://mernecommercewebsite-backend.vercel.app/api/v1/order/update/${id}`,
+      {
+        withCredentials: true, // Include cookies and other credentials with the request
+      },
       {
         status: status,
       }
