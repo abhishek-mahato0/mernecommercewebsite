@@ -1,0 +1,68 @@
+.myorderpage {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto 20px;
+}
+.pimg img {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+}
+.order-single {
+  display: flex;
+  width: 90%;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.order-main {
+  display: flex;
+  width: 100%;
+  margin: 10px;
+  background-color: rgb(222, 239, 239);
+}
+.order-container {
+  display: flex;
+  width: 100%;
+}
+.order-desc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.order-image {
+  width: 150px;
+  height: 120px;
+}
+.order-image img {
+  width: 150px;
+  height: 120px;
+}
+.order-desc h3 {
+  margin: 2px 10px;
+}
+.red {
+  color: red;
+}
+.order-info h4 {
+  padding: 3px;
+}
+.order-info h3 {
+  padding: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  .order-main {
+    flex-direction: column;
+  }
+  .order-first {
+    flex-direction: column;
+  }
+
+  .order-desc {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
