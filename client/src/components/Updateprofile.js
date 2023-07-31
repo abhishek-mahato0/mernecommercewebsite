@@ -13,7 +13,7 @@ const Updateprofile = () => {
     e.preventDefault();
     const updateuser = async () => {
       const { data } = await axios.put(
-        'https://mernecommercewebsite-backend.vercel.app/api/v1/update',
+        '/api/v1/update',
         {
           name: name,
           email: email,

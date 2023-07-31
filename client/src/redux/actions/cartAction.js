@@ -7,12 +7,9 @@ import {
 } from '../constants/cartConstants';
 
 export const addtocart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(
-    `https://mernecommercewebsite-backend.vercel.app/api/v1/product/${id}`,
-    {
-      withCredentials: true, // Include cookies and other credentials with the request
-    }
-  );
+  const { data } = await axios.get(`/api/v1/product/${id}`, {
+    withCredentials: true, // Include cookies and other credentials with the request
+  });
   dispatch({
     type: ADD_CART_SUCCESS,
     payload: {

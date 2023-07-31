@@ -21,7 +21,7 @@ const ProductUpdate = () => {
     e.preventDefault();
     const prodUpdate = async () => {
       const { data } = await axios.put(
-        `https://mernecommercewebsite-backend.vercel.app/api/v1/product/${id}`,
+        `/api/v1/product/${id}`,
         {
           withCredentials: true, // Include cookies and other credentials with the request
         },

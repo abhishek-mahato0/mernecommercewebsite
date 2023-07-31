@@ -7,12 +7,9 @@ const Myorder = () => {
   const [order, setOrder] = useState([]);
   useEffect(() => {
     const orders = async () => {
-      const { data } = await axios.get(
-        'https://mernecommercewebsite-backend.vercel.app/api/v1/order/my',
-        {
-          withCredentials: true, // Include cookies and other credentials with the request
-        }
-      );
+      const { data } = await axios.get('/api/v1/order/my', {
+        withCredentials: true, // Include cookies and other credentials with the request
+      });
       setOrder(data);
     };
     orders();
