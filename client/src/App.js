@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="App">
       this is the product page
-      {products ? (
+      {/* {products ? (
         products.map((ele) => {
           return (
             <div className="name" key={ele._id}>
@@ -27,7 +27,7 @@ function App() {
         })
       ) : (
         <p>Loading..</p>
-      )}
+      )} */}
     </div>
   );
 }
