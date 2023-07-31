@@ -18,16 +18,13 @@
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
-    "vite": "^4.4.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "vite build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "preview": "vite preview",
-    "dev": "vite"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
