@@ -12,13 +12,20 @@ function App() {
   }
   useEffect(() => {
     getData();
-  }, [products]);
+  });
   return (
     <div className="App">
-      {products &&
+      {products ? (
         products.map((ele) => {
-          return <div className="name">{ele.name}</div>;
-        })}
+          return (
+            <div className="name" key={ele._id}>
+              {ele.name}
+            </div>
+          );
+        })
+      ) : (
+        <p>Loading..</p>
+      )}
     </div>
   );
 }
