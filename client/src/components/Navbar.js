@@ -27,7 +27,9 @@ function Navbar() {
   };
   const getCat = async () => {
     try {
-      const { data } = await axios.get('/api/v1/getcat/');
+      const { data } = await axios.get(
+        'https://mernecommercewebsite-backend.vercel.app/api/v1/getcat/'
+      );
       if (data) {
         setCat(data);
       }

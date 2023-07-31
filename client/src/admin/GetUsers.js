@@ -9,9 +9,12 @@ const GetUsers = () => {
   const [users, setUsers] = useState([]);
   const GetallUsers = async () => {
     try {
-      const { data } = await axios.get('/api/v1/users', {
-        withCredentials: true, // Include cookies and other credentials with the request
-      });
+      const { data } = await axios.get(
+        'https://mernecommercewebsite-backend.vercel.app/api/v1/users',
+        {
+          withCredentials: true, // Include cookies and other credentials with the request
+        }
+      );
       if (data) {
         setUsers(data);
       }

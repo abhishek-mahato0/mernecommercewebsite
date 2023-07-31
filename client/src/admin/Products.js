@@ -46,7 +46,7 @@ const Products = () => {
     form.append('rating', rating);
     form.append('myfile', prodimg);
     const { data } = await axios.post(
-      '/api/v1/products',
+      'https://mernecommercewebsite-backend.vercel.app/api/v1/products',
       {
         withCredentials: true, // Include cookies and other credentials with the request
       },

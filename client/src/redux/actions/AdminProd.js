@@ -18,7 +18,7 @@ export const createprod =
     });
     try {
       const { data } = await axios.post(
-        '/api/v1/products',
+        'https://mernecommercewebsite-backend.vercel.app/api/v1/products',
         {
           withCredentials: true, // Include cookies and other credentials with the request
         },
@@ -49,9 +49,12 @@ export const loadadminProd = (id) => async (dispatch) => {
     type: ADMIN_LOAD_PROD_REQUEST,
   });
   try {
-    const { data } = await axios.get(`/api/v1/adminproducts/${id}`, {
-      withCredentials: true, // Include cookies and other credentials with the request
-    });
+    const { data } = await axios.get(
+      `https://mernecommercewebsite-backend.vercel.app/api/v1/adminproducts/${id}`,
+      {
+        withCredentials: true, // Include cookies and other credentials with the request
+      }
+    );
     dispatch({
       type: ADMIN_LOAD_PROD_SUCCESS,
       payload: data,
@@ -69,9 +72,12 @@ export const deleteprod = (id) => async (dispatch) => {
     type: ADMIN_PROD_DEL_REQUEST,
   });
   try {
-    const { data } = await axios.delete(`/api/v1/product/${id}`, {
-      withCredentials: true, // Include cookies and other credentials with the request
-    });
+    const { data } = await axios.delete(
+      `https://mernecommercewebsite-backend.vercel.app/api/v1/product/${id}`,
+      {
+        withCredentials: true, // Include cookies and other credentials with the request
+      }
+    );
     dispatch({
       type: ADMIN_PROD_DEL_SUCCESS,
       id: id,
