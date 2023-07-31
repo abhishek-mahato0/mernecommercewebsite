@@ -11,7 +11,20 @@ const app = express();
 dotenv.config();
 
 app.use(express.json({ limit: '10mb' }));
-app.use(cors());
+const allowedOrigins = ['https://mernecommercewebsite-client.vercel.app']; // Add more origins if needed
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // Set this to 'true' to allow requests with credentials (e.g., cookies)
+};
+
+app.use(cors(corsOptions));
+
 app.use(bodyParser());
 app.use(cookieParser());
 app.use(express.urlencoded({ limit: '10mb' }));
