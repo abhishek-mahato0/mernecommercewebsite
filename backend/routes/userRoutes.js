@@ -95,6 +95,7 @@ userRoute.post('/login', async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: 'None',
+            path: '/',
           })
           .status(200)
           .json({ ...others });
