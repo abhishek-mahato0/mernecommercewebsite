@@ -7,7 +7,7 @@ function App() {
   async function getData() {
     const { data } = await axios.get('/api/v1/products');
     if (data) {
-      console.log(data);
+      console.log('data', data);
       setProducts(data);
     }
   }
