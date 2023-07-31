@@ -17,7 +17,7 @@ app.use(
     allowedHeaders: ['Content-Type', 'Authorization'],
     origin: [
       'http://localhost:3000',
-      'https://mernecommercewebsite.vercel.app/',
+      'https://mernecommercewebsite.vercel.app',
     ],
   })
 );
