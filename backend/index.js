@@ -14,8 +14,8 @@ app.use(express.json({ limit: '10mb' }));
 app.use(
   cors({
     credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    origin: ['http://localhost:3000'],
+    // allowedHeaders: ['Content-Type', 'Authorization'],
+    // origin: ['http://localhost:3000'],
   })
 );
 app.use(bodyParser());
