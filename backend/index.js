@@ -13,12 +13,9 @@ dotenv.config();
 app.use(express.json({ limit: '10mb' }));
 app.use(
   cors({
-    credentials: true,
+    credentials: false,
     allowedHeaders: ['Content-Type', 'Authorization'],
-    origin: [
-      'http://localhost:3000',
-      'https://mernecommercewebsite.vercel.app',
-    ],
+    origin: ['https://mernecommercewebsite.vercel.app'],
   })
 );
 app.use(bodyParser());
