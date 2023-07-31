@@ -88,11 +88,16 @@ userRoute.post('/login', async (req, res) => {
           expiresIn: '1d',
         });
         const { password, ...others } = user._doc;
-        res.cookie('token', token, {
-          expires: new Date(Date.now() + 3000000),
-          httpOnly: true,
-        });
-        res.status(200).json({ ...others });
+        res
+          .cookie('token', token, {
+            // Options for the cookie
+            maxAge: 24 * 60 * 60 * 1000,
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+          })
+          .status(200)
+          .json({ ...others });
       }
     }
   } catch (error) {
