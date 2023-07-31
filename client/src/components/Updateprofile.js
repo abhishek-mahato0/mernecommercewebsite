@@ -12,12 +12,15 @@ const Updateprofile = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     const updateuser = async () => {
-      const { data } = await axios.put('http://localhost:4003/api/v1/update', {
-        name: name,
-        email: email,
-        password: password,
-        avatar: avatar,
-      });
+      const { data } = await axios.put(
+        'https://mernecommercewebsite-backend.vercel.app/api/v1/update',
+        {
+          name: name,
+          email: email,
+          password: password,
+          avatar: avatar,
+        }
+      );
     };
     updateuser();
     dispatch(logout());

@@ -45,7 +45,10 @@ const Products = () => {
     form.append('category', category);
     form.append('rating', rating);
     form.append('myfile', prodimg);
-    const { data } = await axios.post('/api/v1/products', form);
+    const { data } = await axios.post(
+      'https://mernecommercewebsite-backend.vercel.app/api/v1/products',
+      form
+    );
     if (data) {
       toast.success('Product Created successfully');
       navigate('/admin');

@@ -9,7 +9,10 @@ import {
 
 export const login = (info) => async (dispatch) => {
   try {
-    const { data } = await axios.post('/api/v1/login', info);
+    const { data } = await axios.post(
+      'https://mernecommercewebsite-backend.vercel.app/api/v1/login',
+      info
+    );
     if (data) {
       dispatch({
         type: LOGIN_SUCCESS,
@@ -27,7 +30,10 @@ export const login = (info) => async (dispatch) => {
 
 export const register = (info) => async (dispatch, getState) => {
   try {
-    const { data } = await axios.post('/api/v1/register', info);
+    const { data } = await axios.post(
+      'https://mernecommercewebsite-backend.vercel.app/api/v1/register',
+      info
+    );
     if (data) {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -44,7 +50,9 @@ export const register = (info) => async (dispatch, getState) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    const { data } = await axios.post('api/v1/logout');
+    const { data } = await axios.post(
+      'https://mernecommercewebsite-backend.vercel.app/api/v1/logout'
+    );
     if (data) {
       dispatch({
         type: LOG_OUT,

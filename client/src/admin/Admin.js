@@ -19,7 +19,9 @@ const Admin = () => {
 
   const deleteProd = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/v1/product/${id}`);
+      const { data } = await axios.delete(
+        `https://mernecommercewebsite-backend.vercel.app/api/v1/product/${id}`
+      );
       if (data) {
         alert(data.message);
       }

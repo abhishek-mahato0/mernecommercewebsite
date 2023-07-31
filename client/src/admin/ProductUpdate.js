@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { loadadminProd } from '../redux/actions/AdminProd';
 import './product.css';
 const ProductUpdate = () => {
   const { id } = useParams();
@@ -21,14 +20,17 @@ const ProductUpdate = () => {
   const updateadminproduct = (e) => {
     e.preventDefault();
     const prodUpdate = async () => {
-      const { data } = await axios.put(`/api/v1/product/${id}`, {
-        name: name,
-        desc: desc,
-        price: price,
-        img: avatar,
-        category: category,
-        stock: stock,
-      });
+      const { data } = await axios.put(
+        `https://mernecommercewebsite-backend.vercel.app/api/v1/product/${id}`,
+        {
+          name: name,
+          desc: desc,
+          price: price,
+          img: avatar,
+          category: category,
+          stock: stock,
+        }
+      );
     };
     prodUpdate();
     alert('product Updated Successfully');

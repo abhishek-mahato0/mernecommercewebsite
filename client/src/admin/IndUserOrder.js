@@ -12,7 +12,9 @@ const IndUserOrder = () => {
   const navigate = useNavigate();
   const Getallorders = async () => {
     try {
-      const { data } = await axios.get(`/api/v1/induser/orders/${id}`);
+      const { data } = await axios.get(
+        `https://mernecommercewebsite-backend.vercel.app/api/v1/induser/orders/${id}`
+      );
       if (data) {
         setOrders(data);
       } else {

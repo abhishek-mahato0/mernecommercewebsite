@@ -30,10 +30,13 @@ function Singleproduct() {
       alert('enter between 0 and 5');
     } else {
       try {
-        const { data } = await axios.put(`/api/v1/review/${id}`, {
-          rating: userrating,
-          comment: usercomment,
-        });
+        const { data } = await axios.put(
+          `https://mernecommercewebsite-backend.vercel.app/api/v1/review/${id}`,
+          {
+            rating: userrating,
+            comment: usercomment,
+          }
+        );
         if (data) {
           toast.success('Product review successfull');
           setUsercomment('');

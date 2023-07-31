@@ -10,19 +10,26 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   const getallorders = async () => {
-    const { data } = await axios.get('/api/v1/orders');
+    const { data } = await axios.get(
+      'https://mernecommercewebsite-backend.vercel.app/api/v1/orders'
+    );
     setOrders(data);
   };
   async function deleteOrder(id) {
-    const { data } = axios.delete(`api/v1/order/${id}`);
+    const { data } = axios.delete(
+      `https://mernecommercewebsite-backend.vercel.app/api/v1/order/${id}`
+    );
     console.log(data);
 
     toast.success('Order deleted');
   }
   async function updateOrder(status, id) {
-    const { data } = axios.put(`api/v1/order/update/${id}`, {
-      status: status,
-    });
+    const { data } = axios.put(
+      `https://mernecommercewebsite-backend.vercel.app/api/v1/order/update/${id}`,
+      {
+        status: status,
+      }
+    );
 
     toast.success('Order updated');
   }
