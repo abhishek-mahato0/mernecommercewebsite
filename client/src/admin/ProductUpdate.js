@@ -17,9 +17,9 @@ const ProductUpdate = () => {
   const [category, setCategory] = useState(single.category);
   const [desc, setDesc] = useState(single.desc);
   const [stock, setStock] = useState(single.stock);
-  const updateadminproduct = (e) => {
+  const updateadminproduct = async (e) => {
     e.preventDefault();
-    const prodUpdate = async () => {
+    try {
       const { data } = await axios.put(
         `https://mernecommercewebsite-backend.vercel.app/api/v1/product/${id}`,
         {
@@ -34,10 +34,13 @@ const ProductUpdate = () => {
           stock: stock,
         }
       );
-    };
-    prodUpdate();
-    alert('product Updated Successfully');
-    navigate('/admin');
+      if (data) {
+        alert('product Updated Successfully');
+        navigate('/admin');
+      }
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   const updatePic = (e) => {
@@ -102,9 +105,9 @@ const ProductUpdate = () => {
             value={desc}
           ></textarea>
         </div>
-        <div className="comp">
+        {/* <div className="comp">
           <input type="file" onChange={updatePic}></input>
-        </div>
+        </div> */}
         <div className="btn">
           <input type="submit"></input>
         </div>

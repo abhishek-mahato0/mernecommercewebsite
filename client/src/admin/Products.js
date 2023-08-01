@@ -144,12 +144,7 @@ const Products = () => {
         </div>
         <div className="ad-name">
           <label>Product Image:</label>
-          <input
-            type="file"
-            onChange={setImage}
-            required
-            value={prodimg}
-          ></input>
+          <input type="file" onChange={setImage} required></input>
         </div>
         <div className="ad-name">
           <button type="submit">Create Prod</button>
