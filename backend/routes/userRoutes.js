@@ -89,7 +89,7 @@ userRoute.post('/login', async (req, res) => {
         });
         const { password, ...others } = user._doc;
         res
-          .cookie('token', JSON.stringify(token), {
+          .cookie('token', token, {
             // Options for the cookie
             maxAge: 24 * 60 * 60 * 1000,
             httpOnly: true,

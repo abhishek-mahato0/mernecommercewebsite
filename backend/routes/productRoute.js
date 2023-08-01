@@ -118,7 +118,7 @@ productRoute.get('/product/:id', async (req, res) => {
 });
 
 //delete Product
-productRoute.delete('/product/:id', verifyEditor, async (req, res) => {
+productRoute.delete('/product/:id', verifyAdmin, async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -133,7 +133,7 @@ productRoute.delete('/product/:id', verifyEditor, async (req, res) => {
 });
 
 //update Product
-productRoute.put('/product/:id', verifyEditor, async (req, res) => {
+productRoute.put('/product/:id', verifyAdmin, async (req, res) => {
   try {
     const { id } = req.params;
     const product = await Product.findByIdAndUpdate(id, req.body, {
