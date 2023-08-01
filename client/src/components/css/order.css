@@ -51,7 +51,11 @@
 .order-info h3 {
   padding: 5px;
 }
-
+.o-name > h3 {
+  font-size: large;
+  margin: 10px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 @media only screen and (max-width: 600px) {
   .order-main {
     flex-direction: column;

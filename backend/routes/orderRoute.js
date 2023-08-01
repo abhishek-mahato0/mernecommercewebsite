@@ -27,7 +27,6 @@ orderRoute.post('/order', verifyToken, async (req, res) => {
     if (!createdorder) {
       res.status(401).json({ message: 'Please fill the requires fields' });
     } else {
-      console.log(createdorder);
       res.status(200).json({ createdorder });
     }
   } catch (error) {

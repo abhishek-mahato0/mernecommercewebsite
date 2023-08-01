@@ -84,9 +84,9 @@ const Updateprofile = () => {
             required
           ></input>
         </div>
-        <div className="password">
+        {/* <div className="password">
           <input type="file" onChange={setImage}></input>
-        </div>
+        </div> */}
         <div className="logbtn">
           <button type="submit">Update</button>
         </div>

@@ -16,7 +16,7 @@ const Myorder = () => {
       setOrder(data);
     };
     orders();
-  });
+  }, []);
   return (
     <div className="myorderpage">
       {order && (
@@ -36,7 +36,7 @@ const Myorder = () => {
                               <img src={it.img} alt={it.name}></img>
                             </div>
                             <div className="order-desc">
-                              <div className="name">
+                              <div className="o-name">
                                 <h3>{it.name}</h3>
                               </div>
                               <div className="order-price">
