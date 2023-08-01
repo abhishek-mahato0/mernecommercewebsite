@@ -16,49 +16,50 @@ productRoute.post(
   upload.single('myfile'),
   async (req, res) => {
     try {
-      const { name, price, desc, stock, category, rating } = req.body;
-      if (!name || !price || !desc || !stock || !category || !rating) {
-        res
-          .status(400)
-          .json({ message: 'Please fill all the required fields' });
-      } else {
-        const b64 = Buffer.from(req.file.buffer).toString('base64');
-        let dataURI = 'data:' + req.file.mimetype + ';base64,' + b64;
-        cloudinary.config({
-          cloud_name: process.env.CLOUD_NAME,
-          api_key: process.env.API_KEY,
-          api_secret: process.env.API_SECRET,
-        });
-        const date = new Date();
-        const { url } = await cloudinary.uploader.upload(dataURI, {
-          public_id: `${name}+ ${date.toString()}`,
-          folder: 'mern-commerce/products/',
-        });
-        if (url) {
-          const product = new Product({
-            name,
-            price,
-            desc,
-            stock,
-            category,
-            rating,
-            img: url,
-            createdby: req.user._id,
-          });
-          await product.save();
-          if (!product) {
-            res
-              .status(400)
-              .json({ message: 'Error occured while saving product' });
-          } else {
-            res.status(200).json(product);
-          }
-        } else {
-          res.status(400).json({
-            message: 'Error occured while uploading details. Please try again.',
-          });
-        }
-      }
+      res.status(200).json({ id: req.user._id, body: req.body });
+      // const { name, price, desc, stock, category, rating } = req.body;
+      // if (!name || !price || !desc || !stock || !category || !rating) {
+      //   res
+      //     .status(400)
+      //     .json({ message: 'Please fill all the required fields' });
+      // } else {
+      //   const b64 = Buffer.from(req.file.buffer).toString('base64');
+      //   let dataURI = 'data:' + req.file.mimetype + ';base64,' + b64;
+      //   cloudinary.config({
+      //     cloud_name: process.env.CLOUD_NAME,
+      //     api_key: process.env.API_KEY,
+      //     api_secret: process.env.API_SECRET,
+      //   });
+      //   const date = new Date();
+      //   const { url } = await cloudinary.uploader.upload(dataURI, {
+      //     public_id: `${name}+ ${date.toString()}`,
+      //     folder: 'mern-commerce/products/',
+      //   });
+      //   if (url) {
+      //     const product = new Product({
+      //       name,
+      //       price,
+      //       desc,
+      //       stock,
+      //       category,
+      //       rating,
+      //       img: url,
+      //       createdby: req.user._id,
+      //     });
+      //     await product.save();
+      //     if (!product) {
+      //       res
+      //         .status(400)
+      //         .json({ message: 'Error occured while saving product' });
+      //     } else {
+      //       res.status(200).json(product);
+      //     }
+      //   } else {
+      //     res.status(400).json({
+      //       message: 'Error occured while uploading details. Please try again.',
+      //     });
+      //   }
+      //}
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
@@ -152,7 +153,7 @@ productRoute.put('/product/:id', verifyAdmin, async (req, res) => {
     if (!product) {
       res.status(201).json({ message: 'Product Not Found' });
     } else {
-      await product.save();
+      //await product.save();
       res.status(200).json(product);
     }
   } catch (error) {
