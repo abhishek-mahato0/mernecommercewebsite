@@ -94,6 +94,7 @@ userRoute.post('/login', async (req, res) => {
             maxAge: 24 * 60 * 60 * 1000,
             httpOnly: true,
             secure: true,
+            domain: 'https://mernecommercewebsite-backend.vercel.app',
             sameSite: 'None',
             path: '/',
           })
