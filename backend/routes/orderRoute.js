@@ -7,15 +7,17 @@ const orderRoute = require('express').Router();
 //creating order
 orderRoute.post('/order', verifyToken, async (req, res, next) => {
   try {
-    const { shippingInfo, cart, total, user } = req.body;
-    if (!shippingInfo || !cart || !user || !total) {
+    const { _id } = req.user;
+    const { shippingInfo, cart, total } = req.body;
+    console.log(total);
+    if (!shippingInfo || !cart || !total) {
       res.status(400).json({ message: 'Please fill the requires fields' });
     }
     const order = new Orders({
       shippingInfo,
       cart,
       total,
-      user,
+      user: _id,
     });
     const createdorder = await order.save();
     cart.forEach(async (element) => {
@@ -26,6 +28,7 @@ orderRoute.post('/order', verifyToken, async (req, res, next) => {
     if (!createdorder) {
       res.status(401).json({ message: 'Please fill the requires fields' });
     } else {
+      console.log(createdorder);
       res.status(200).json({ createdorder });
     }
   } catch (error) {

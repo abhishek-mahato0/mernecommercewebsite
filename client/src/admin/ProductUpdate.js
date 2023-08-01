@@ -21,7 +21,7 @@ const ProductUpdate = () => {
     e.preventDefault();
     try {
       const { data } = await axios.put(
-        `https://mernecommercewebsite-backend.vercel.app/api/v1/product/${id}`,
+        `/api/v1/product/${id}`,
         {
           withCredentials: true, // Include cookies and other credentials with the request
         },
@@ -65,18 +65,13 @@ const ProductUpdate = () => {
         <img src={avatar} alt="avatar"></img>
         <div className="comp">
           <label>Product Name</label>
-          <input
-            type="text"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          ></input>
+          <input type="text" onChange={(e) => setName(e.target.value)}></input>
         </div>
         <div className="comp">
           <label>Product Price</label>
           <input
             type="number"
             onChange={(e) => setPrice(e.target.value)}
-            value={price}
           ></input>
         </div>
         <div className="comp">
@@ -84,7 +79,6 @@ const ProductUpdate = () => {
           <input
             type="text"
             onChange={(e) => setCategory(e.target.value)}
-            value={category}
           ></input>
         </div>
         <div className="comp">
@@ -92,7 +86,6 @@ const ProductUpdate = () => {
           <input
             type="number"
             onChange={(e) => setStock(e.target.value)}
-            value={stock}
           ></input>
         </div>
         <div className="comp">
@@ -102,7 +95,6 @@ const ProductUpdate = () => {
             rows="10"
             type="text"
             onChange={(e) => setDesc(e.target.value)}
-            value={desc}
           ></textarea>
         </div>
         {/* <div className="comp">

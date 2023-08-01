@@ -18,9 +18,11 @@ const Orderpage = () => {
 
   const placeOrderHandler = (e) => {
     e.preventDefault();
-    dispatch(createOrder(shipping, cart, total, userInfo._id));
-    toast.success('Your Order has been confirmed');
-    navigate('/myorder');
+    if (shipping && cart && total) {
+      dispatch(createOrder(shipping, cart, total));
+      toast.success('Your Order has been confirmed');
+      navigate('/myorder');
+    }
   };
   return (
     <div className="placeorder">

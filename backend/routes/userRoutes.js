@@ -230,10 +230,7 @@ userRoute.put('/changepassword', verifyToken, async (req, res) => {
       if (!user) {
         res.status(201).json({ message: 'User Not Found' });
       }
-      const comparepassword = await bcrypt.compareSync(
-        oldpassword,
-        user.password
-      );
+      const comparepassword = bcrypt.compareSync(oldpassword, user.password);
       if (!comparepassword) {
         res.status(401).json({ message: 'Wrong password' });
       } else {
