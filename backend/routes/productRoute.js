@@ -136,7 +136,6 @@ productRoute.delete('/product/:id', verifyEditor, async (req, res) => {
 productRoute.put('/product/:id', verifyEditor, async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(req.body);
     const product = await Product.findByIdAndUpdate(id, req.body, {
       new: true,
     });
