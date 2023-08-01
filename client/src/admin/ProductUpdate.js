@@ -59,59 +59,61 @@ const ProductUpdate = () => {
 
   return (
     <div className="update">
-      <form className="update-form" onSubmit={updateadminproduct}>
-        <h1>Update Product</h1>
-        <img src={avatar} alt="avatar"></img>
-        <div className="comp">
-          <label>Product Name</label>
-          <input
-            type="text"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          ></input>
-        </div>
-        <div className="comp">
-          <label>Product Price</label>
-          <input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          ></input>
-        </div>
-        <div className="comp">
-          <label>Product Category</label>
-          <input
-            type="text"
-            onChange={(e) => setCategory(e.target.value)}
-            value={category}
-          ></input>
-        </div>
-        <div className="comp">
-          <label>Product Stock</label>
-          <input
-            type="number"
-            onChange={(e) => setStock(e.target.value)}
-            value={stock}
-          ></input>
-        </div>
+      {single && (
+        <form className="update-form" onSubmit={updateadminproduct}>
+          <h1>Update Product</h1>
+          <img src={avatar} alt="avatar"></img>
+          <div className="comp">
+            <label>Product Name</label>
+            <input
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+              value={single.name}
+            ></input>
+          </div>
+          <div className="comp">
+            <label>Product Price</label>
+            <input
+              type="number"
+              value={single.price}
+              onChange={(e) => setPrice(e.target.value)}
+            ></input>
+          </div>
+          <div className="comp">
+            <label>Product Category</label>
+            <input
+              type="text"
+              onChange={(e) => setCategory(e.target.value)}
+              value={single.category}
+            ></input>
+          </div>
+          <div className="comp">
+            <label>Product Stock</label>
+            <input
+              type="number"
+              onChange={(e) => setStock(e.target.value)}
+              value={single.stock}
+            ></input>
+          </div>
 
-        <div className="comp">
-          <label>Product Description</label>
-          <textarea
-            cols="40"
-            rows="10"
-            type="text"
-            onChange={(e) => setDesc(e.target.value)}
-            value={desc}
-          ></textarea>
-        </div>
-        {/* <div className="comp">
+          <div className="comp">
+            <label>Product Description</label>
+            <textarea
+              cols="40"
+              rows="10"
+              type="text"
+              onChange={(e) => setDesc(e.target.value)}
+              value={single.desc}
+            ></textarea>
+          </div>
+          {/* <div className="comp">
           <input type="file" onChange={updatePic}></input>
         </div> */}
-        <div className="btn">
-          <input type="submit"></input>
-        </div>
-      </form>
+          <div className="btn">
+            <input type="submit"></input>
+          </div>
+        </form>
+      )}
     </div>
   );
 };
