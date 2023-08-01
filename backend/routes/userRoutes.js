@@ -19,7 +19,6 @@ userRoute.post('/register', upload.single('avatar'), async (req, res) => {
       res.status(400).json({ message: 'Please fill the requires fields' });
     }
     const exists = await Users.findOne({ email: email });
-    const hashPassword = bcrypt.hashSync(password, 8);
     if (exists) {
       res.status(400).json({ message: 'Username already Exists' });
     } else {
@@ -30,7 +29,7 @@ userRoute.post('/register', upload.single('avatar'), async (req, res) => {
         api_key: process.env.API_KEY,
         api_secret: process.env.API_SECRET,
       });
-
+      const hashPassword = bcrypt.hashSync(password, 8);
       const { url } = await cloudinary.uploader.upload(dataURI, {
         public_id: `${email}`,
         folder: 'mern-commerce/users/',
@@ -43,17 +42,24 @@ userRoute.post('/register', upload.single('avatar'), async (req, res) => {
           avatar: url,
         });
         if (!user) {
-          res.status(400).json({ message: 'Please fill the requires fields' });
+          res
+            .status(400)
+            .json({ message: 'Some error occured. Please try again later' });
         } else {
+          await user.save();
           const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
             expiresIn: '1d',
           });
-          const createduser = await user.save();
-          const { password, ...others } = createduser._doc;
+          const { password, ...others } = user._doc;
+
           res
             .cookie('token', token, {
+              // Options for the cookie
+              maxAge: 24 * 60 * 60 * 1000,
               httpOnly: true,
-              expires: new Date(Date.now() + 3000000),
+              secure: true,
+              sameSite: 'None',
+              path: '/',
             })
             .status(201)
             .json({ ...others });
@@ -75,7 +81,6 @@ userRoute.post('/login', async (req, res) => {
     if (!email || !password) {
       res.status(400).json({ message: 'Please fill the requires fields' });
     }
-
     const user = await Users.findOne({ email });
     if (!user) {
       res.status(400).json({ message: 'Wrong Username or password' });

@@ -37,24 +37,36 @@ const Products = () => {
 
   const handleProd = async (e) => {
     e.preventDefault();
-    const form = new FormData();
-    form.append('name', name);
-    form.append('price', price);
-    form.append('desc', desc);
-    form.append('stock', stock);
-    form.append('category', category);
-    form.append('rating', rating);
-    form.append('myfile', prodimg);
-    const { data } = await axios.post(
-      'https://mernecommercewebsite-backend.vercel.app/api/v1/products',
-      {
-        withCredentials: true, // Include cookies and other credentials with the request
-      },
-      form
-    );
-    if (data) {
-      toast.success('Product Created successfully');
-      navigate('/admin');
+    if (
+      !name ||
+      !price ||
+      !desc ||
+      !stock ||
+      !category ||
+      !rating ||
+      !prodimg
+    ) {
+      toast.error('Please fill all the required values');
+    } else {
+      const form = new FormData();
+      form.append('name', name);
+      form.append('price', price);
+      form.append('desc', desc);
+      form.append('stock', stock);
+      form.append('category', category);
+      form.append('rating', rating);
+      form.append('myfile', prodimg);
+      const { data } = await axios.post(
+        'https://mernecommercewebsite-backend.vercel.app/api/v1/products',
+        {
+          withCredentials: true, // Include cookies and other credentials with the request
+        },
+        form
+      );
+      if (data) {
+        toast.success('Product Created successfully');
+        navigate('/admin');
+      }
     }
   };
   return (
@@ -75,6 +87,7 @@ const Products = () => {
             placeholder="enter product name"
             required
             onChange={(e) => setname(e.target.value)}
+            value={name}
           ></input>
         </div>
         <div className="ad-name">
@@ -84,6 +97,7 @@ const Products = () => {
             placeholder="enter product rating"
             required
             onChange={(e) => setrating(e.target.value)}
+            value={rating}
           ></input>
         </div>
         <div className="ad-name">
@@ -93,6 +107,7 @@ const Products = () => {
             placeholder="enter product price"
             required
             onChange={(e) => setprice(e.target.value)}
+            value={price}
           ></input>
         </div>
         <div className="ad-name">
@@ -102,6 +117,7 @@ const Products = () => {
             placeholder="enter product category"
             required
             onChange={(e) => setcategory(e.target.value)}
+            value={category}
           ></input>
         </div>
         <div className="ad-name">
@@ -111,6 +127,7 @@ const Products = () => {
             placeholder="enter product count"
             required
             onChange={(e) => setstock(e.target.value)}
+            value={stock}
           ></input>
         </div>
         <div className="ad-name">
@@ -122,11 +139,17 @@ const Products = () => {
             placeholder="enter product description"
             required
             onChange={(e) => setdesc(e.target.value)}
+            value={desc}
           ></textarea>
         </div>
         <div className="ad-name">
           <label>Product Image:</label>
-          <input type="file" onChange={setImage} required></input>
+          <input
+            type="file"
+            onChange={setImage}
+            required
+            value={prodimg}
+          ></input>
         </div>
         <div className="ad-name">
           <button type="submit">Create Prod</button>

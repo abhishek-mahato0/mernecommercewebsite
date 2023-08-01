@@ -14,11 +14,11 @@ productRoute.post(
   '/products',
   verifyAdmin,
   upload.single('myfile'),
-  async (req, res, next) => {
+  async (req, res) => {
     try {
       const { name, price, desc, stock, category, rating } = req.body;
       if (!name || !price || !desc || !stock || !category || !rating) {
-        res.status(401).json({ message: 'Please fill the requires fields' });
+        res.status(400).json({ message: 'Please fill the requires fields' });
       } else {
         const b64 = Buffer.from(req.file.buffer).toString('base64');
         let dataURI = 'data:' + req.file.mimetype + ';base64,' + b64;
@@ -44,7 +44,7 @@ productRoute.post(
         });
         const createdproduct = await product.save();
         if (!product) {
-          res.status(401).json({ message: 'Please fill the requires fields' });
+          res.status(400).json({ message: 'Please fill the requires fields' });
         }
 
         res.status(200).json(createdproduct);
