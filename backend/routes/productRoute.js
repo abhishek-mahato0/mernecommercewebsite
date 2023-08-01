@@ -146,14 +146,15 @@ productRoute.delete('/product/:id', verifyAdmin, async (req, res) => {
 productRoute.put('/product/:id', verifyAdmin, async (req, res) => {
   try {
     const { id } = req.params;
-    const product = await Product.findByIdAndUpdate(id, req.body, {
+    const product = await Product.findByIdAndUpdate({ _id: id }, req.body, {
       new: true,
     });
     if (!product) {
       res.status(201).json({ message: 'Product Not Found' });
+    } else {
+      await product.save();
+      res.status(200).json(product);
     }
-    await product.save();
-    res.status(200).json(product);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
