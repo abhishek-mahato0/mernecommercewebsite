@@ -9,7 +9,6 @@ orderRoute.post('/order', verifyToken, async (req, res, next) => {
   try {
     const { _id } = req.user;
     const { shippingInfo, cart, total } = req.body;
-    console.log(total);
     if (!shippingInfo || !cart || !total) {
       res.status(400).json({ message: 'Please fill the requires fields' });
     }
