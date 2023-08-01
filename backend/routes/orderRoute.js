@@ -9,9 +9,8 @@ orderRoute.post('/order', verifyToken, async (req, res, next) => {
   try {
     const { shippingInfo, cart, total, user } = req.body;
     if (!shippingInfo || !cart || !user || !total) {
-      res.status(401).json({ message: 'Please fill the requires fields' });
+      res.status(400).json({ message: 'Please fill the requires fields' });
     }
-
     const order = new Orders({
       shippingInfo,
       cart,
@@ -19,17 +18,16 @@ orderRoute.post('/order', verifyToken, async (req, res, next) => {
       user,
     });
     const createdorder = await order.save();
-    if (!order) {
-      res.status(401).json({ message: 'Please fill the requires fields' });
-    }
-
-    res.status(200).json({ createdorder });
-
     cart.forEach(async (element) => {
       const product = await Products.findById({ _id: element.id });
       product.stock = product.stock - element.qty;
       await product.save();
     });
+    if (!createdorder) {
+      res.status(401).json({ message: 'Please fill the requires fields' });
+    } else {
+      res.status(200).json({ createdorder });
+    }
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
